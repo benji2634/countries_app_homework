@@ -10,3 +10,8 @@ h1 {
 #country-list {
   font-size: 15px;
 }
+
+#main-map {
+  height: 500px;
+  width: 500px;
+}

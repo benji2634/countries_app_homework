@@ -3,13 +3,17 @@
   <head>
     <title>Countries of the World</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src='index.js'></script>
+    <script src='mapWrapper.js'></script>
   </head>
   <body>
-    <h1>Populations</h1>
+    <h1>Countries of the World</h1>
     <select id='country-list'>
       <option disabled>Choose a country, my friend...</option>    
     </select>
     <p id="select-result"></p>
+    <div id='main-map'></div>
+    <button id='geo-button' onclick="geoFindMe()">Show my location</button>
   </body>
 </html>
