@@ -4,8 +4,10 @@
     <title>Countries of the World</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script src='index.js'></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="columnChart.js"></script>
     <script src='mapWrapper.js'></script>
+    <script src='index.js'></script>
   </head>
   <body>
     <h1>Countries of the World</h1>
@@ -15,5 +17,6 @@
     <p id="select-result"></p>
     <div id='main-map'></div>
     <button id='geo-button' onclick="geoFindMe()">Show my location</button>
+    <div id="column-chart"></div>
   </body>
 </html>

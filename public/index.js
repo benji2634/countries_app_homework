@@ -41,22 +41,46 @@ var populateList = function(allCountries) {
   }
 }
 
-var handleSelectChanged = function( event ) {
-  console.log( event.target.value );
+var handleSelectChanged = function(event) {
   var country = countries[event.target.value];
   var pTag = document.querySelector('#select-result');
-  pTag.innerText = "Country: " + country.name + "\nCapital city: " + country.capital + "\nPopulation: " + country.population;
+  pTag.innerText = "Country: " + country.name + "\nCapital City: " + country.capital + "\nPopulation: " + country.population + "\nRegion: " + country.region;
   var countrystring = JSON.stringify(country);
   localStorage.selection = countrystring;
+
   var container = document.getElementById('main-map');
   var latitude  = country.latlng[0];
   var longitude = country.latlng[1];
-
-  container.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-
   var location = {lat: latitude, lng: longitude};
   var mainMap = new MapWrapper(container, location, 5);
   mainMap.addMarker(location);
+
+    countryCodes = [];
+    countryPopulations = [];
+    console.log(countries);
+
+    for (i = 0; i < country.borders.length; i++) {
+      var countryCode = country.borders.length[i];
+      for (countryCode of countries) {
+        countryCodes.push(countryCode.);
+        // console.log(countryNames[0]);
+        var tempData = {
+          y: country.population,
+          color: "tomato"
+        }
+        countryPopulations.push(tempData);
+      // console.log(countryPopulations[0]);
+    }
+
+    var series = [{
+      name: "Country population",
+      data: countryPopulations
+    }]
+  }
+  var returnData = {series: series, countryNames: countryNames};
+  return returnData;
+  // console.log(returnData);
+
 }
 
 var geoFindMe = function() {
@@ -68,9 +92,6 @@ var geoFindMe = function() {
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
-
-    container.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-
     var location = {lat: latitude, lng: longitude};
     var mainMap = new MapWrapper(container, location, 10);
     mainMap.addMarker(location);
@@ -81,9 +102,5 @@ var geoFindMe = function() {
   container.innerHTML = "<p>Locating…</p>";
   navigator.geolocation.getCurrentPosition(success, error);
 }
-
-// var mapCountryLocation = function(event) {
-//   console.log(event.target.value);
-// }
 
 window.onload = app;
