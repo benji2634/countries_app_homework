@@ -1,0 +1,12 @@
+body {
+  font-family: helvetica;
+  background-color: #FFE4BC;
+}
+
+h1 {
+  color: teal;
+}
+
+#country-list {
+  font-size: 15px;
+}
