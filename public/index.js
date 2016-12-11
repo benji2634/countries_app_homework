@@ -55,32 +55,37 @@ var handleSelectChanged = function(event) {
   var mainMap = new MapWrapper(container, location, 5);
   mainMap.addMarker(location);
 
-    countryCodes = [];
-    countryPopulations = [];
-    console.log(countries);
+  countryCodes = [];
+  countryPopulations = [];
+  // console.log(country.borders.length);
+  // console.log(countries);
+  // console.log(countries[0].alpha3Code);
 
-    for (i = 0; i < country.borders.length; i++) {
-      var countryCode = country.borders.length[i];
-      for (countryCode of countries) {
-        countryCodes.push(countryCode.);
-        // console.log(countryNames[0]);
+  for (i = 0; i < country.borders.length; i++) {
+    var countryCode = country.borders[i];
+    for (j = 0; j < countries.length; j++) {
+      var aCountry = countries[j];
+      if (aCountry.alpha3Code === countryCode) {
+        countryCodes.push(aCountry.alpha3Code);
         var tempData = {
-          y: country.population,
+          y: aCountry.population,
           color: "tomato"
         }
         countryPopulations.push(tempData);
-      // console.log(countryPopulations[0]);
+        // console.log(countryPopulations);
+      }
     }
 
     var series = [{
       name: "Country population",
       data: countryPopulations
     }]
+    console.log(series);
   }
-  var returnData = {series: series, countryNames: countryNames};
-  return returnData;
-  // console.log(returnData);
-
+  var title = "My Country Chart";
+  var chartContainer = document.getElementById('column-chart');
+  var returnData = {series: series, countryCodes: countryCodes};
+  new ColumnChart(chartContainer, title, returnData.series, returnData.countryCodes);
 }
 
 var geoFindMe = function() {
