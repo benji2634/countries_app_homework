@@ -55,37 +55,31 @@ var handleSelectChanged = function(event) {
   var mainMap = new MapWrapper(container, location, 5);
   mainMap.addMarker(location);
 
-  countryCodes = [];
+  countryNames = [];
   countryPopulations = [];
-  // console.log(country.borders.length);
-  // console.log(countries);
-  // console.log(countries[0].alpha3Code);
-
+ 
   for (i = 0; i < country.borders.length; i++) {
     var countryCode = country.borders[i];
     for (j = 0; j < countries.length; j++) {
       var aCountry = countries[j];
       if (aCountry.alpha3Code === countryCode) {
-        countryCodes.push(aCountry.alpha3Code);
+        countryNames.push(aCountry.name);
         var tempData = {
           y: aCountry.population,
-          color: "tomato"
+          color: "blue"
         }
         countryPopulations.push(tempData);
-        // console.log(countryPopulations);
       }
     }
 
     var series = [{
-      name: "Country population",
+      name: "Country",
       data: countryPopulations
     }]
-    console.log(series);
   }
-  var title = "My Country Chart";
+  var title = "Border Country Populations";
   var chartContainer = document.getElementById('column-chart');
-  var returnData = {series: series, countryCodes: countryCodes};
-  new ColumnChart(chartContainer, title, returnData.series, returnData.countryCodes);
+  new ColumnChart(chartContainer, title, series, countryNames);
 }
 
 var geoFindMe = function() {

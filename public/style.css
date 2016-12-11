@@ -1,17 +1,22 @@
 body {
   font-family: helvetica;
-  background-color: #FFE4BC;
+  background-color: beige;
 }
 
 h1 {
+  text-align: left;
   color: teal;
 }
 
-#country-list {
+#list {
+  width: 1010px; 
+  margin-top: 20px; 
+  margin: left; 
   font-size: 15px;
 }
 
 #main-map {
+  margin: auto;
   height: 500px;
   width: 500px;
 }
