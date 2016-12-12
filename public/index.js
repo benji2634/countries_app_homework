@@ -48,12 +48,22 @@ var handleSelectChanged = function(event) {
   var countrystring = JSON.stringify(country);
   localStorage.selection = countrystring;
 
+  getBorderingCountries(country);
+
+  getMap(country);
+
+}
+
+var getMap = function(country) {
   var container = document.getElementById('main-map');
   var latitude  = country.latlng[0];
   var longitude = country.latlng[1];
   var location = {lat: latitude, lng: longitude};
   var mainMap = new MapWrapper(container, location, 5);
   mainMap.addMarker(location);
+}
+
+  var getBorderingCountries = function(country) {
 
   countryNames = [];
   countryPopulations = [];
